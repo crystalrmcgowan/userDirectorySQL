@@ -1,0 +1,70 @@
+body {
+  background-color: lightgreen;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.directoryList {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+li {
+  list-style-type: none;
+  border: 0.2px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+li p {
+  color: #666;
+  margin-left: 1.2em;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1em;
+}
+
+img {
+  margin-top: 1em;
+}
+
+/*************Individual user************/
+h2 {
+  font-size: 3em;
+}
+
+.individualUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  border: 0.5px solid gray;
+  border-radius: 300px;
+  margin-right: 1em;
+  height: 175px;
+}
+
+.photo_contact {
+  display: flex;
+}
+
+.name_job_contact {
+  display: flex;
+  flex-direction: column;
+  line-height: 1em;
+  height: 200px;
+}

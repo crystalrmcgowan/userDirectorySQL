@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "express": "^4.15.3",
+    "mustache-express": "^1.2.5",
+    "path": "^0.12.7",
+    "pg-promise": "^6.3.7"
+  }
+}
