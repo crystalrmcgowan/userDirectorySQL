@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Each User</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="individualUser">
+        <div class="photo_contact">
+          <div class="image">
+            <img src = {{avatar}}>
+          </div>
+          <div class="name_job_contact">
+            <div class="name">
+              <h2>{{name}}</h2>
+            </div>
+
+            <div class="job">
+              <p>
+                {{#address.city}}
+                {{address.city}},
+                {{/address.city}}
+                {{address.country}} |
+                {{#job}}
+                {{job}}, {{company}}
+                {{/job}}
+
+                {{^job}}
+                  <p style="color:red;">Available for Hire</p>
+                {{/job}}
+              </p>
+            </div>
+
+            <div class="contact">
+              <p>{{email}} | {{phone}}</p>
+            </div>
+          </div>
+          </div>
+        <div class="education">
+          <dl>
+            {{#education}}
+            <dt>Education</dt>
+            <dd>{{university}}</dd>
+            {{/education}}
+            <dt>Skills</dt>
+            {{#skills}}
+            <dd>{{.}}</dd>
+            {{/skills}}
+          </dl>
+        </div>
+      </div>
+      </div>
+    </div>
+    <script src="userDirectory/app.js" charset="utf-8"></script>
+  </body>
+</html>

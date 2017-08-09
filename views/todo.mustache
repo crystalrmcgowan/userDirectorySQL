@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Directory</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Index</h1>
+      <ul class="directoryList">
+        {{#users}}
+        <li>
+          <img src = {{avatar}} height="100" width="100">
+          <p><a href="/people/{{id}}">{{name}}</a></p>
+
+          {{#job}}
+          <p>{{job}}, {{company}}</p>
+          {{/job}}
+
+          {{^job}}
+          <p style="color:red;">Available for hire</p>
+          {{/job}}
+        </li>
+        {{/users}}
+      </ul>
+    </div>
+    <script src="userDirectory/app.js" charset="utf-8"></script>
+  </body>
+</html>
