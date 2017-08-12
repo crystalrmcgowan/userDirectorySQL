@@ -3,9 +3,9 @@ const app = express()
 
 const mustacheExpress = require("mustache-express")
 const path = require("path")
-const pgp = require('pg-promise')()
-const db = pgp({ database: 'robotDatabase'})
-const query = 'SELECT * FROM robotDatabase'
+const pgp = require("pg-promise")()
+const database = pgp({ database: "robotDatabase" })
+const query = "SELECT * FROM robotDatabase"
 
 // CREATE TABLE robotDatabase (
 // "id" SERIAL PRIMARY KEY,
@@ -26,24 +26,50 @@ const query = 'SELECT * FROM robotDatabase'
 
 app.use(express.static("public"))
 
-app.engine("mst", mustacheExpress())
+app.engine("mustache", mustacheExpress())
 app.set("views", "./views")
-app.set("view engine", "mst")
+app.set("view engine", "mustache")
 
-
-app.get("/", (req, res) => {
-  // console.log(db.query());
-  db.any(query).then(rows => {
-    res.render('people', { robotDatabase: rows })
+app.get("/", function(req, res) {
+  database.any(query).then(rows => {
+    res.render("people", { users: rows })
   })
 })
 
-app.get('/people/:id', (req,res) => {
-  const id = req.params.id
-  db.oneOrNone('SELECT * FROM db WHERE id = $1', [id])
-  .then((data) => {
-    res.json(data)
+app.get("/users/:id", (req, res) => {
+  database.any(query).then(rows => {
+    const userID = parseInt(req.params.id)
+    const myUser = rows.find(user => {
+      return user.id === userID
+    })
+    res.render("todo", myUser)
   })
+})
+
+// Create New Robot
+app.post("/add", (req, res) => {
+  let newUser = {
+    id: rows.length + 1,
+    username: req.body.robotUsername,
+    imageurl: req.body.imageurl,
+    email: req.body.robotEmail,
+    university: req.body.robotUniversity,
+    street_number: req.body.robotStreetNumber,
+    address: req.body.robotAddress,
+    city: req.body.robotCity,
+    state: req.body.robotState,
+    job: req.body.robotJob,
+    company: req.body.robotCompany,
+    postal_code: req.body.robotPostalCode
+  }
+  rows.push(newUser)
+  res.redirect("/", { users: rows })
+})
+
+app.delete("/users/:id", (req, res) => {
+  const userID = parseInt(req.params.id)
+  allRobots = allRobots.filter(bot => bot.id !== robotID)
+  res.render("/", { users: rows })
 })
 
 app.listen(3000, () => {

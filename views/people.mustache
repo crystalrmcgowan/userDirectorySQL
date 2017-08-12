@@ -1,60 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Each User</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>User Directory</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
-      <div class="individualUser">
-        <div class="photo_contact">
-          <div class="image">
-            <img src = {{avatar}}>
-          </div>
-          <div class="name_job_contact">
-            <div class="name">
-              <h2>{{name}}</h2>
-            </div>
-
-            <div class="job">
-              <p>
-                {{#address.city}}
-                {{address.city}},
-                {{/address.city}}
-                {{address.country}} |
-                {{#job}}
-                {{job}}, {{company}}
-                {{/job}}
-
-                {{^job}}
-                  <p style="color:red;">Available for Hire</p>
-                {{/job}}
-              </p>
-            </div>
-
-            <div class="contact">
-              <p>{{email}} | {{phone}}</p>
-            </div>
-          </div>
-          </div>
-        <div class="education">
-          <dl>
-            {{#education}}
-            <dt>Education</dt>
-            <dd>{{university}}</dd>
-            {{/education}}
-            <dt>Skills</dt>
-            {{#skills}}
-            <dd>{{.}}</dd>
-            {{/skills}}
-          </dl>
+    <div class="wrapper">
+      <h1>User Directory</h1>
+      <section class="directory-box">
+        {{#users}}
+        <div class="user">
+          <a href="/users/{{id}}"><img src="{{imageurl}}"></a>
+          <h2><a href="/users/{{id}}">{{username}}</a></h2>
+          <p>{{#job}}{{job}}{{/job}} {{#company}}{{company}}{{/company}}</p>
+          <p>{{^job}}<span class="available">Available for Hire</span>{{/job}}</p>
         </div>
-      </div>
-      </div>
+        {{/users}}
+      </section>
+      <section class="form">
+        <h2>Add A User</h2>
+        <form class="" action="index.html" method="post">
+          <input type="text" name="robotUsername" value="" placeholder="username" required>
+          <input type="email" name="robotEmail" value="" placeholder="email">
+          <input type="text" name="robotUniversity" value="" placeholder="university">
+          <div class="address-one">
+            <input type="text" name="robotStreetNumber" value="" placeholder="street #" id="robotStreetNumber">
+            <input type="text" name="robotAddress" value="" placeholder="street name" id="robotStreetName">
+          </div>
+          <input type="text" name="robotCity" value="" placeholder="city">
+          <div class="address-two">
+            <input type="text" name="robotState" value="" placeholder="state" id="robotState">
+            <input type="text" name="robotPostalCode" value="" placeholder="postal code" id="robotPostalCode">
+          </div>
+          <input type="text" name="robotJob" value="" placeholder="job">
+          <input type="text" name="robotCompany" value="" placeholder="company">
+          <button type="submit" name="button">Submit</button>
+        </form>
+      </section>
     </div>
-    <script src="userDirectory/app.js" charset="utf-8"></script>
   </body>
 </html>
